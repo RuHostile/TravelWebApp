@@ -6,7 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<UserContext>(opt =>
-    opt.UseInMemoryDatabase("TodoList"));
+{
+    opt.UseSqlServer("Server=(localdb)\\Local;Database=TravelDB;Trusted_Connection=True;TrustServerCertificate=True");
+});
 
 builder.Services.AddControllers();
 
