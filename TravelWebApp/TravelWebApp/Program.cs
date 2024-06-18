@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<UserContext>(opt =>
+builder.Services.AddDbContext<TravelContext>(opt =>
 {
     opt.UseSqlServer("Server=(localdb)\\Local;Database=TravelDB;Trusted_Connection=True;TrustServerCertificate=True");
 });

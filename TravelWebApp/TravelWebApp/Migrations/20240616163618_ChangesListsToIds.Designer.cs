@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelWebApp.Models;
 
@@ -10,9 +11,11 @@ using TravelWebApp.Models;
 namespace TravelWebApp.Migrations
 {
     [DbContext(typeof(TravelContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20240616163618_ChangesListsToIds")]
+    partial class ChangesListsToIds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

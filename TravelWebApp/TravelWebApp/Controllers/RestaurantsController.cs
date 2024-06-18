@@ -11,47 +11,47 @@ namespace TravelWebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class RestaurantsController : ControllerBase
     {
         private readonly TravelContext _context;
 
-        public UsersController(TravelContext context)
+        public RestaurantsController(TravelContext context)
         {
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/Restaurants
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<Restaurant>>> GetRestaurants()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Restaurants.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/Restaurants/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<Restaurant>> GetRestaurant(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var restaurant = await _context.Restaurants.FindAsync(id);
 
-            if (user == null)
+            if (restaurant == null)
             {
                 return NotFound();
             }
 
-            return user;
+            return restaurant;
         }
 
-        // PUT: api/Users/5
+        // PUT: api/Restaurants/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutRestaurant(int id, Restaurant restaurant)
         {
-            if (id != user.Id)
+            if (id != restaurant.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
+            _context.Entry(restaurant).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace TravelWebApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!RestaurantExists(id))
                 {
                     return NotFound();
                 }
@@ -72,37 +72,36 @@ namespace TravelWebApp.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/Restaurants
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<Restaurant>> PostRestaurant(Restaurant restaurant)
         {
-            _context.Users.Add(user);
+            _context.Restaurants.Add(restaurant);
             await _context.SaveChangesAsync();
 
-            //return CreatedAtAction("GetUser", new { id = user.Id }, user);
-            return CreatedAtAction(nameof(GetUser), new { id = user.Id, name = user.Name });
+            return CreatedAtAction("GetRestaurant", new { id = restaurant.Id }, restaurant);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/Restaurants/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        public async Task<IActionResult> DeleteRestaurant(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            var restaurant = await _context.Restaurants.FindAsync(id);
+            if (restaurant == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(user);
+            _context.Restaurants.Remove(restaurant);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool UserExists(int id)
+        private bool RestaurantExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Restaurants.Any(e => e.Id == id);
         }
     }
 }

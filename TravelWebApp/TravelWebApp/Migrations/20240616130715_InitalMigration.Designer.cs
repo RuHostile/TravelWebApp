@@ -10,7 +10,7 @@ using TravelWebApp.Models;
 
 namespace TravelWebApp.Migrations
 {
-    [DbContext(typeof(UserContext))]
+    [DbContext(typeof(TravelContext))]
     [Migration("20240616130715_InitalMigration")]
     partial class InitalMigration
     {
